@@ -1,12 +1,23 @@
 {
-  "name": "package",
+  "name": "itc-230-projects",
   "version": "1.0.0",
-  "description": "package for ITC230 projects",
+  "description": "ITC230",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flowzeliak/itc-230-projects.git"
+  },
+  "keywords": [
+    "itc230"
+  ],
+  "author": "Christopher Moore",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flowzeliak/itc-230-projects/issues"
+  },
+  "homepage": "https://github.com/flowzeliak/itc-230-projects#readme"
 }
