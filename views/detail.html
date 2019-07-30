@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    <title>ITC230</title>
+</head>
+<body>
+<h1>BURGER DETAILS</h1>
+<p>You were looking for {{search}}</p>
+<p>We found:
+    {{#if result}}
+    <li>Name: {{ result.name }}
+    <li>Restaurant: {{ result.restaurant }}
+    <li>Price: {{ result.price }}
+  {{else}}
+    NO CHEESEBURGER LIKE THAT IN THIS DATABASE 
+  {{/if}}
+</p>
+
+<form action="/delete" method="post">
+  <input value="{{search}}" name="name_field">
+  <input type="submit" value="DELETE">
+</form>
+
+
+
+<a href="http://localhost:3000/">HOME PAGE</a>
+
+
+</body>
+</html>
