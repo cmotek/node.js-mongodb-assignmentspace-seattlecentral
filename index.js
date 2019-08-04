@@ -3,7 +3,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 
-
 // const http = require("http"); 
 // const fs = require("fs");
 const cheez = require("./cheez.js");
@@ -28,6 +27,8 @@ app.post('/detail', (req, res) => {
   let result = cheez.get(req.body.name_field);
   res.render('detail', {search: search, result: result }); 
 });
+
+cheez.add({'name':'whopper','restaurant':'Burger King','price':'6.74'})
 
 app.post('/delete', (req, res) => {
   let ding = req.body.name_field;

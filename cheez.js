@@ -10,6 +10,14 @@ let cheez = [
     return cheez;
   };
 
+  exports.add = (whopper) => {
+    if (module.exports.get(whopper.name)) {
+    console.log ("Whopper already in database!");
+    } else {
+    cheez.push(whopper);
+    console.log( "Whopper Added to Database!");
+    }};
+
   exports.get = (name) => {
     let found = cheez.find((item) => {
       return item.name === name;
