@@ -6,9 +6,9 @@ let cheez = [
     {name: 'baconcheeseburger', restaurant: 'Rain City Burgers', price: 7.69}
   ];
 
-  exports.getAll = () => {
-    return cheez;
-  };
+  //exports.getAll = () => {
+  //  return cheez;
+  //};
 
   exports.add = (whopper) => {
     if (module.exports.get(whopper.name)) {
@@ -18,16 +18,16 @@ let cheez = [
     console.log( "Whopper Added to Database!");
     }};
 
-  exports.get = (name) => {
-    let found = cheez.find((item) => {
-      return item.name === name;
-    });
-    return found;
-  };
+//  exports.get = (name) => {
+//    let found = cheez.find((item) => {
+//      return item.name === name;
+//    });
+//    return found;
+//  };
 
-  exports.dilly = (name) => {
-      let dong = cheez.filter((bro) => {
-        return name != bro.name;
-       });
-      cheez = dong;
-    };
+//  exports.dilly = (name) => {
+//      let dong = cheez.filter((bro) => {
+//        return name != bro.name;
+//       });
+//    cheez = dong;
+//    };

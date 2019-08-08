@@ -5,7 +5,7 @@ const app = express();
 
 // const http = require("http"); 
 // const fs = require("fs");
-const cheez = require("./cheez.js");
+const cheez = require("./models/cheez.js");
 // let qs = require("querystring");
 
 // http.createServer((req,res) => {
@@ -21,22 +21,27 @@ app.use(bodyParser.urlencoded({extended: true})); // parse form submissions
 let handlebars =  require("express-handlebars");
 app.engine(".html", handlebars({extname: '.html', defaultLayout: false}));
 app.set("view engine", ".html");
- 
-app.post('/detail', (req, res) => {
-  let search = req.body.name_field;
-  let result = cheez.get(req.body.name_field);
-  res.render('detail', {search: search, result: result }); 
-});
 
-cheez.add({'name':'whopper','restaurant':'Burger King','price':'6.74'})
+app.post('/detail', (req, res) => {
+  cheez.Burger.findOne({'name': req.body.name_field}, (err, item) => {
+    let search = req.body.name_field;
+    let result = item;
+    if (err) return next(err);
+    res.render('detail', {search: search, result: result }); 
+})});
 
 app.post('/delete', (req, res) => {
-  let ding = req.body.name_field;
-  let result = cheez.get(req.body.name_field);
-  cheez.dilly(ding);
-  let cheezlength = cheez.getAll().length;
-  res.render('delete', {ding: ding, result: result, cheezlength: cheezlength }); 
-});
+  cheez.Burger.findOne({'name': req.body.name_field}, async (err, item) => {
+    let ding = req.body.name_field;
+    let result = item;
+    await item.remove(); 
+    if (err) return next(err); 
+  cheez.Burger.find({}, (err, items) => {
+      if (err) return next(err);
+      let cheezlength = items.length;
+      res.render('delete', {ding: ding, result: result, cheezlength: cheezlength }); 
+  })
+})});
 
 app.get('/', (req, res) => {
   res.type('text/html');
@@ -49,21 +54,25 @@ app.get('/about', (req, res) => {
  });
 
  app.get('/getall', (req, res) => {
-  res.type('text/plain');
-  res.send(JSON.stringify(cheez.getAll()));
- });
+  cheez.Burger.find({}, (err, items) => {
+    if (err) return next(err);
+    console.log(items.length);
+    res.type('text/plain');
+    res.send(JSON.stringify(items));
+  })});
+  
 
-app.get('/get', (req, res) => {
-  let burger = cheez.get(req.query.name);
-  let results = (burger) ? JSON.stringify(burger) : "Not found";
-  res.send(results);
- });
+//app.get('/get', (req, res) => {
+//  let burger = cheez.get(req.query.name);
+//  let results = (burger) ? JSON.stringify(burger) : "Not found";
+//  res.send(results);
+// });
 
-app.get('/delete', (req, res) => {
-  let ding = cheez.get(req.query.name);
-  cheez.dilly(req.query.name);
-  res.send('Item Deleted ' + ding.name);
- });
+//app.get('/delete', (req, res) => {
+//  let ding = cheez.get(req.query.name);
+//  cheez.dilly(req.query.name);
+//  res.send('Item Deleted ' + ding.name);
+// });
 
 app.use( (req,res) => {
   res.type('text/plain'); 
