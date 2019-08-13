@@ -3,9 +3,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 
+
 // const http = require("http"); 
 // const fs = require("fs");
-const cheez = require("./models/cheez.js");
 // let qs = require("querystring");
 
 // http.createServer((req,res) => {
@@ -21,6 +21,10 @@ app.use(bodyParser.urlencoded({extended: true})); // parse form submissions
 let handlebars =  require("express-handlebars");
 app.engine(".html", handlebars({extname: '.html', defaultLayout: false}));
 app.set("view engine", ".html");
+
+const cheez = require("./models/cheez.js");
+const routes = require("./routes.js");
+app.use('/routes', routes, require('cors')());
 
 app.post('/detail', (req, res) => {
   cheez.Burger.findOne({'name': req.body.name_field}, (err, item) => {
