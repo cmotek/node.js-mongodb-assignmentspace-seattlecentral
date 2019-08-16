@@ -24,6 +24,7 @@ app.set("view engine", ".html");
 
 const cheez = require("./models/cheez.js");
 const routes = require("./routes.js");
+
 app.use('/routes', routes, require('cors')());
 
 app.post('/detail', (req, res) => {
@@ -48,9 +49,10 @@ app.post('/delete', (req, res) => {
 })});
 
 app.get('/', (req, res) => {
-  res.type('text/html');
-  res.sendFile(__dirname + '/public/home.html'); 
- });
+  cheez.Burger.find({}, (err, items) => {
+    if (err) return next(err);
+    res.render('home', {items: items}); 
+})});
  
 app.get('/about', (req, res) => {
   res.type('text/plain');
