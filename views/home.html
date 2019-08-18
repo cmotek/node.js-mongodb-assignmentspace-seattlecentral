@@ -5,27 +5,31 @@
 <body>
 <h1>LIST OF CHEESEBURGERS</h1>
 
-<script>
+<!--//<script>
 var cheezes = [
   {{#each items}}
      "{{this.name}}" + " ",
   {{/each}}]
-</script>
+</script>-->
 
 
 <div id="root"></div>
     <!-- This element's contents will be replaced with your component. -->
 
-<form action="/detail" method="post">
+<!--<form action="/detail" method="post">
     <label for="burger_name">Enter Burger Name: </label>
     <input id="burger_name" type="text" name="name_field">
+    <label for="restaurant">Enter Restaurant Name: </label>
+    <input id="restaurant" type="text" name="rest_field">
+    <label for="price">Enter Price: </label>
+    <input id="price" type="number" name="price_field">
     <input type="submit" value="OK">
-</form> 
+</form> -->
 
 <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
-<script src="react.js"></script>
+<script src="react.js" type="text/jsx"></script>
 
 </body>
 </html>
